@@ -1,7 +1,7 @@
 ---
 title: "Assignment 6"
 subtitle: "STAT 201"
-author: "YOUR NAME"
+author: "Josh Jerisha"
 
 format:
   html:
@@ -48,7 +48,7 @@ To get full credit for this Question you must:
 
 ## Github Repo Link
 
-[https://your-github-repo-url](https://your-github-repo-url)
+[https://github.com/jjerisha/Jerisha_Josh_201_A06](https://github.com/jjerisha/Jerisha_Josh_201_A06)
 
 :::
 
@@ -56,7 +56,7 @@ To get full credit for this Question you must:
 
 ## Screenshot/image of RStudio
 
-![](filepath.png)
+![](github_setup.PNG)
 
 :::
 
@@ -102,6 +102,11 @@ Extract the value `8162` (LeBron James points) in 2 different ways:
 - using names
 
 ```{r}
+lebron_pts1 <- player_info[[2]][[4]] # extract via position indexing
+print(lebron_pts1)
+
+lebron_pts2 <- player_info$LJ$points # extract via names
+print(lebron_pts2)
 
 ```
 
@@ -113,6 +118,13 @@ Add a new named element to the end of each player's list called `height`. The he
 Print the `player_info` list to prove you were successful.
 
 ```{r}
+player_heights <- c(78, 81, 78, 86, 85) # element positions correspond to player positions in player_info (e.g. player_heights[5] = 85)
+
+for(i in 1:length(player_info)){ # position indexing
+  player_info[[i]]$height <- player_heights[i]
+}
+
+print(player_info)
 
 ```
 
@@ -132,9 +144,19 @@ Hint: initialize an empty list
 Note: this must still run correctly even if the values were to change or if another player were added to the list or if the player order changed.
 
 ```{r}
+# initialize empty list
+points_per_game <- list()
+
+# initialize user-defined function to be applied to every element of player_info
+ppg_func <- function(player){
+  player$points / player$games_played
+}
+
+points_per_game <- lapply(player_info, ppg_func) # output list
+
+print(points_per_game)
 
 ```
-
 
 ### Part d (1 point)
 
@@ -143,6 +165,9 @@ Use the list created in Part c and an appropriate apply function to round each v
 Store the output as a vector and print the results.
 
 ```{r}
+points_per_game_rounded <- sapply(points_per_game, round, 2) # output vector
+
+print(points_per_game_rounded)
 
 ```
 
