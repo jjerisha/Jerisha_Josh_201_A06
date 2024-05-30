@@ -189,6 +189,19 @@ ie: 91 rounds to 90; 173 rounds to 200; 1450 rounds to 1000
 Hint: use `MARGIN = 1:2` to apply the function to each value instead of only a row/col.
 
 ```{r}
+print(mat_rand)
+
+# NOTE: The 'round' function rounds odd numbers ending in '5' up and even numbers ending in '5' down.
+
+mat_round <- function(matrix){ # input is matrix of whole numbers
+  for(i in 1:length(matrix)){
+    matrix[i] <- round(matrix[i], -(nchar(matrix[i]) - 1)) # number of rounded digits is negative because rounding positions are left of the decimal point
+  }
+  return(matrix)
+}
+
+mat_rand_rounded <- apply(mat_rand, MARGIN = 1:2, mat_round)
+print(mat_rand_rounded)
 
 ```
 
