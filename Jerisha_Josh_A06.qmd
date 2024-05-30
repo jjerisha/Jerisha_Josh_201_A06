@@ -282,11 +282,11 @@ min_median_year <- names(annual_medians)[which.min(as.numeric(annual_medians))]
 # print output statement
 print(paste0('The maximum median annual temperature of ',
              max_median_value, 
-             ' occured in ',
+             ' occurred in ',
              max_median_year,
              ' and the minimum median annual temperature of ',
              min_median_value, 
-             ' occured in ',
+             ' occurred in ',
              min_median_year, 
              '.'))
              
